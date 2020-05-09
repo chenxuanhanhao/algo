@@ -14,4 +14,6 @@ export ANSIBLE_EXTRA_ARGS=''
 export REPO_SLUG=${REPOSITORY:-trailofbits/algo}
 export REPO_BRANCH=${BRANCH:-master}
 
+apt update && apt install curl -y
+
 curl -s https://raw.githubusercontent.com/${REPOSITORY:-trailofbits/algo}/${BRANCH:-master}/install.sh | sudo -E bash -x"
