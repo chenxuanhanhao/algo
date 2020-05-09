@@ -26,10 +26,10 @@ jobs:
           ansible-lint -v *.yml roles/{local,cloud-*}/*/*.yml
 
   scripted-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-16.04
     strategy:
       matrix:
-        UBUNTU_VERSION: ["18.04", "20.04"]
+        UBUNTU_VERSION: ["18.04", "20.04/cloud"]
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v1
@@ -42,7 +42,7 @@ jobs:
           sudo add-apt-repository -yu ppa:wireguard/wireguard
           sudo apt install -y \
             python3-pip \
-            lxd lxc \
+            lxd \
             expect-dev \
             debootstrap \
             tree \
@@ -95,10 +95,10 @@ jobs:
           sudo env "PATH=$PATH" ./tests/ipsec-client.sh
 
   local-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-16.04
     strategy:
       matrix:
-        UBUNTU_VERSION: ["18.04", "20.04"]
+        UBUNTU_VERSION: ["18.04", "20.04/cloud"]
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v1
